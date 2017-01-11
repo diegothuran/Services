@@ -1,0 +1,14 @@
+{% extends 'ServiceOrdering/base.html' %}
+{% block body %}
+    {% if all_ordens %}
+        <h1>Ordens de Serviço</h1>
+        <ul>
+            {% for ordem in all_ordens %}
+                <li><a href="{% url 'service:detail' ordem.id %}">{{ ordem.data }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>Não existem ordens de serviço</h3>
+    {% endif %}
+{% endblock %}
+
