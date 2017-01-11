@@ -1,0 +1,27 @@
+{% extends 'ServiceOrdering/base.html' %}
+{% block title %} Adicionar Ordem {%  endblock %}
+
+{% block body %}
+    {% if ordem_de_servico %}
+        <h1>aaaaaaaaa</h1>
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-mid-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="" method="post" enctype="application/x-www-form-urlencoded">
+                            {% csrf_token %}
+                            {% include 'ServiceOrdering/form-template.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

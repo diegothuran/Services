@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ordens de Serviço{% endblock %}</title>
     <!-- Carregando static files-->
 {% load staticfiles %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -28,7 +30,7 @@
             <div class="collapse navbar-collapse" id="topNavBar">
                 <ul class="nav navbar-nav">
                     <li class="" >
-                        <a href="{% url 'service:index' %}">
+                        <a href="{% url 'service:ordem-add' %}">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             &nbsp; Ordem de Serviço
                         </a>

@@ -15,4 +15,6 @@ class DetailView(generic.DetailView):
 
 class CreateOrdem(CreateView):
     model = Ordem_de_Servico
+    #template_name = 'ServiceOrdering/ordem_de_servico_form.html'
+    #context_object_name = 'ordem_de_servico'
     fields = '__all__'
