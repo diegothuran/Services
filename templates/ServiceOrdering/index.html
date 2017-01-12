@@ -2,13 +2,51 @@
 {% block body %}
     {% if all_ordens %}
         <h1>Ordens de Serviço</h1>
+        <table class="table table-striped">
+          <thead>
+            <th>Horário</th>
+            <th>Serviço</th>
+            <th>Observações</th>
+            <th>Empresa</th>
+            <th>CPF/CNPJ</th>
+            <th>Contato</th>
+            <th>Fone</th>
+            <th>Técnico</th>
+            <th>Agencia</th>
+            <th>Acões</th>
+          </thead>
+        <tbody>
             {% for ordem in all_ordens %}
-                <div class="panel panel-body">
-                    <a href="{% url 'service:detail' ordem.id %}">{{ ordem.data }}</a>
-                    <button type="button" href="{% url 'service:ordem-delete' ordem.id %}"><span class="glyphicon glyphicon-erase"></span></button>
-                </div>
+                <tr>
+                    <th>{{ ordem.data }}</th>
+                    <th>{{ ordem.servico }}</th>
+                    <th>{{ ordem.empresa }}</th>
+                    <th>{{ ordem.empresa.cnpj }}</th>
+                    <th>{{ ordem.empresa }}</th>
+                    <th>{{ ordem.contato }}</th>
+                    <th>{{ ordem.fone }}</th>
+                    <th>{{ ordem.tecnico }}</th>
+                    <th>{{ ordem.agencia }}</th>
+                    <th><a href="{% url 'service:ordem-update' ordem.id %}"><button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-edit"></span>
+                    </button></a>
+
+                    <!--delete-->
+                    <form action="{% url 'service:ordem-delete' ordem.id %}" method="post" style="display: inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="ordem_id" value="{{ ordem.id }}"/>
+                        <button onclick="return confirm('Tem certeza?')" type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+
+                    </form>
+                </th>
+                </tr>
 
             {% endfor %}
+
+        </tbody>
+        </table>
 
     {% else %}
         <h3>Não existem ordens de serviço</h3>
