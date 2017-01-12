@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 
 # Create your models here.
 
@@ -36,7 +36,7 @@ class Ordem_de_Servico(models.Model):
     aberta = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('service:detail', kwargs={"pk": self.pk})
+        return reverse_lazy('service:detail', kwargs={'pk', self.pk})
 
     def __str__(self):
         return self.data

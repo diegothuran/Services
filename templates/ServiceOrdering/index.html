@@ -2,11 +2,14 @@
 {% block body %}
     {% if all_ordens %}
         <h1>Ordens de Serviço</h1>
-        <ul>
             {% for ordem in all_ordens %}
-                <li><a href="{% url 'service:detail' ordem.id %}">{{ ordem.data }}</a></li>
+                <div class="panel panel-body">
+                    <a href="{% url 'service:detail' ordem.id %}">{{ ordem.data }}</a>
+                    <button type="button" href="{% url 'service:ordem-delete' ordem.id %}"><span class="glyphicon glyphicon-erase"></span></button>
+                </div>
+
             {% endfor %}
-        </ul>
+
     {% else %}
         <h3>Não existem ordens de serviço</h3>
     {% endif %}
