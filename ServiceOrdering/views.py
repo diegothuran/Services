@@ -23,6 +23,7 @@ class CreateOrdem(CreateView):
     def get_success_url(self):
         return reverse('service:detail', kwargs={'pk': self.object.pk})
 
+
     def get_form_kwargs(self, *args, **kwargs):
         kwargs = super(CreateOrdem, self).get_form_kwargs(
             *args, **kwargs)
