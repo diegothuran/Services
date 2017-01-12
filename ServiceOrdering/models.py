@@ -35,8 +35,8 @@ class Ordem_de_Servico(models.Model):
     agencia = models.CharField(max_length=200, blank=True)
     aberta = models.BooleanField(default=False)
 
-    def get_absolute_url(self):
-        return reverse('service:detail', kwargs={'pk', self.pk})
+    #def get_absolute_url(self):
+    #    return reverse('service:detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.data
