@@ -25,8 +25,7 @@ class Empresa(models.Model):
         return self.nome
 
 class Ordem_de_Servico(models.Model):
-    data = models.DateField()
-    horario = models.DateTimeField()
+    data = models.DateTimeField()
     servico = models.ForeignKey(Servico)
     observacao = models.TextField()
     empresa = models.ForeignKey(Empresa)
@@ -40,7 +39,7 @@ class Ordem_de_Servico(models.Model):
         return reverse('service:detail', kwargs={"pk": self.pk})
 
     def __str__(self):
-        return self.data
+        return self.empresa.nome
 
     class Meta:
         verbose_name = 'Ordem de Servico'

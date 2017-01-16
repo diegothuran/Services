@@ -22,10 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'vq-01-y5(a!et&%4ml6a1$pen1-bhmbp(9eb*s%mwnrvd*^)rt'
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'*.diegothuran.com', u'127.0.0.1']
 
 
 # Application definition
@@ -74,7 +77,7 @@ WSGI_APPLICATION = 'Services.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,16 +89,16 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'thuran_so',
-        'USER': 'thuran_sos',
-        'PASSWORD': 'day23any',
-        'HOST': '198.38.82.92',   # Or an IP Address that your DB is hosted on
-        #'PORT': '3306',
+        'NAME': 'so',
+        'USER': 'thuran',
+        'PASSWORD': '1234qwer',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
         'TEST_CHARSET': "utf8",
         'TEST_COLLATION': "utf8_general_ci",
     }
 }
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
