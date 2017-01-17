@@ -87,13 +87,13 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 def fechar_ordem_de_servico(request, ordem_de_servico_id):
-    song = get_object_or_404(Ordem_de_Servico, pk=ordem_de_servico_id)
+    ordem_de_servico = get_object_or_404(Ordem_de_Servico, pk=ordem_de_servico_id)
     try:
-        if song.is_favorite:
-            song.is_favorite = False
+        if ordem_de_servico.is_aberta:
+            ordem_de_servico.is_aberta = False
         else:
-            song.is_favorite = True
-        song.save()
+            ordem_de_servico.is_aberta = True
+        ordem_de_servico.save()
     except (KeyError, Ordem_de_Servico.DoesNotExist):
         return JsonResponse({'success': False})
     else:
