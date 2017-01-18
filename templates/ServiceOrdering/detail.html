@@ -1,4 +1,37 @@
 {% extends 'ServiceOrdering/base.html' %}
+{% block title %}Ordens de Serviço - Detalhes{% endblock %}
 {% block body %}
-    <h1>{{ ordem_de_servico.id }}</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-mid-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>Data : {{ ordem_de_servico.data }}</p>
+                        <p>Serviço : {{ ordem_de_servico.servico.titulo }}</p>
+                        <p>Observação : {{ ordem_de_servico.observacao }}</p>
+                        <p>Empresa : {{ ordem_de_servico.empresa.nome }}</p>
+                        <p>Contato : {{ ordem_de_servico.contato }}</p>
+                        <p>Fone : {{ ordem_de_servico.fone }}</p>
+                        <p>Tecnico : {{ ordem_de_servico.tecnico}}</p>
+                        <p>Agência : {{ ordem_de_servico.agencia }}</p>
+                        <p>Estado : {{ ordem_de_servico.estado }}</p>
+                        <a href="{% url 'service:ordem-update' ordem_de_servico.id %}"><button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button></a>
+
+                        <!--delete-->
+                        <form action="{% url 'service:ordem-delete' ordem_de_servico.id %}" method="post" style="display: inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="ordem_id" value="{{ ordem_de_servico.id }}"/>
+                            <button onclick="return confirm('Tem certeza?')" type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

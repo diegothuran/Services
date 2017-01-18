@@ -24,8 +24,15 @@ class Empresa(models.Model):
     def __str__(self):
         return self.nome
 
+class Estado(models.Model):
+    nome = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nome
+
 class Ordem_de_Servico(models.Model):
-    data = models.DateTimeField()
+    data = models.DateField()
+    hora = models.CharField(max_length=5, default="00:00")
     servico = models.ForeignKey(Servico)
     observacao = models.TextField()
     empresa = models.ForeignKey(Empresa)
@@ -33,7 +40,7 @@ class Ordem_de_Servico(models.Model):
     fone = models.CharField(max_length=20, blank= True)
     tecnico = models.ForeignKey(Tecnico)
     agencia = models.CharField(max_length=200, blank=True)
-    aberta = models.BooleanField(default=False)
+    estado = models.ForeignKey(Estado)
 
     def get_absolute_url(self):
         return reverse('service:detail', kwargs={"pk": self.pk})
