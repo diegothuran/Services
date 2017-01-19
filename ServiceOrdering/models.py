@@ -40,7 +40,7 @@ class Ordem_de_Servico(models.Model):
     fone = models.CharField(max_length=20, blank= True)
     tecnico = models.ForeignKey(Tecnico)
     agencia = models.CharField(max_length=200, blank=True)
-    estado = models.ForeignKey(Estado)
+    estado = models.ForeignKey(Estado, default=1)
 
     def get_absolute_url(self):
         return reverse('service:detail', kwargs={"pk": self.pk})
