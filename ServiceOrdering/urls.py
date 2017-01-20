@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
-
+from django_tables2_simplefilter import FilteredSingleTableView
 app_name = 'service'
 
 urlpatterns = [
@@ -10,7 +10,7 @@ urlpatterns = [
 
     url(r'^register/$', views.UserFormView.as_view(), name='register'),
 
-    url(r'^index/$', views.IndexView.as_view(), name='index'),
+    url(r'^index/$', views.person_list, name='index'),
 
     url(r'^login_user/$', views.login_user, name='login_user'),
 

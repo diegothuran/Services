@@ -1,4 +1,5 @@
 from django.views import generic
+from django.shortcuts import redirect
 from .models import Servico, Ordem_de_Servico, Empresa, Tecnico
 from django.shortcuts import redirect, render,  get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -7,13 +8,16 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm
 from django.contrib.auth import logout
+from django_tables2 import RequestConfig
+from .table import OrdemTable
 
-class IndexView(generic.ListView):
-    template_name = 'ServiceOrdering/index.html'
-    context_object_name = 'all_ordens'
+def person_list(request):
+    table = OrdemTable(Ordem_de_Servico.objects.all(), order_by='hora')
+    RequestConfig(request, paginate={'per_page': 25}).configure(table)
+    return render(request, 'ServiceOrdering/index.html', {
+        'table': table
+    })
 
-    def get_queryset(self):
-        return Ordem_de_Servico.objects.all()
 
 class DetailView(generic.DetailView):
     model = Ordem_de_Servico
@@ -39,8 +43,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                all_ordens = Ordem_de_Servico.objects.all()
-                return render(request, 'ServiceOrdering/index.html', {'all_ordens': all_ordens})
+                return redirect('service:index')
             else:
                 return render(request, 'ServiceOrdering/login.html', {'error_message': 'Your account has been disabled'})
         else:
